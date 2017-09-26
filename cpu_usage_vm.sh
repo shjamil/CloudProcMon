@@ -1,5 +1,5 @@
 #!/bin/bash
-PID=$(pgrep qemu | head -17 | tail -1)
+PID=$(pgrep qemu | head -1 | tail -1)
 pcpu=$(top -b -n2 -p $PID |tail -n 1 | awk '{print $9}')
 OS_server_id=$( awk -F , -v OFS='\t' 'NR == 1 || $6 > 4 {print $11}' /proc/$PID/cmdline | cut -c6-)
 case $pcpu in
